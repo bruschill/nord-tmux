@@ -1,6 +1,6 @@
 <p align="center"><img src="https://cdn.rawgit.com/arcticicestudio/nord-tmux/develop/src/assets/nord-tmux-banner.svg"/></p>
 
-<p align="center"><img src="https://assets-cdn.github.com/favicon.ico" width=24 height=24/> <a href="https://github.com/arcticicestudio/nord-tmux/releases/latest"><img src="https://img.shields.io/github/release/arcticicestudio/nord-tmux.svg"/></a> <a href="https://github.com/arcticicestudio/nord/releases/tag/v0.2.0"><img src="https://img.shields.io/badge/Nord-v0.2.0-88C0D0.svg"/></a></p>
+<p align="center"><img src="https://assets-cdn.github.com/favicon.ico" width=24 height=24/> <a href="https://github.com/arcticicestudio/nord-tmux/releases/latest"><img src="https://img.shields.io/github/release/arcticicestudio/nord-tmux.svg?style=flat-square"/></a> <a href="https://github.com/arcticicestudio/nord/releases/tag/v0.2.0"><img src="https://img.shields.io/badge/Nord-v0.2.0-88C0D0.svg?style=flat-square"/></a></p>
 
 <p align="center">An arctic, north-bluish clean and elegant <a href="https://tmux.github.io">tmux</a> color theme.</p>
 
@@ -14,16 +14,22 @@ Based on the <a href="https://github.com/arcticicestudio/nord">Nord</a> color pa
   - [Getting started](#getting-started)
     - [Installation](#installation)
       - [tmux Plugin Manager](#tmux-plugin-manager)
-      - [GitHub Repository Clone](#gitHub-repository-clone)
-    - [Activation](#activation)
+      - [Manual](#manual)
   - [Features](#features)
+  - [Configuration](#configuration)
+    - [Disable status content](#disable-status-content)
+      - [No patched fonts](#no-patched-fonts)
+  - [Plugin Support](#plugin-support)
+    - [tmux-prefix-highlight](#tmux-prefix-highlight)
   - [Development](#development)
     - [Contribution](#contribution)
 
 ## Getting started
+
 ### Installation
-**NOTE**: Nord tmux is a 16 colorspace theme and **MUST** be used with the associated terminal emulator theme in order to work properly!  
-Make sure to install one of the currently supported terminal themes listed below **BEFORE** installing Nord tmux.
+
+**NOTE**: Nord tmux is a 16 colorspace theme and **must** be used with the associated terminal emulator theme in order to work properly!  
+Make sure to install one of the currently supported terminal themes listed below **before** installing Nord tmux.
 
 [![Nord GNOME Terminal](https://cdn.rawgit.com/arcticicestudio/nord/develop/src/assets/nord-gnome-terminal-banner.svg)](https://github.com/arcticicestudio/nord-gnome-terminal)  
 [![Nord Guake](https://cdn.rawgit.com/arcticicestudio/nord/develop/src/assets/nord-guake-banner.svg)](https://github.com/arcticicestudio/nord-guake)  
@@ -40,33 +46,33 @@ Make sure to install one of the currently supported terminal themes listed below
 [![Nord Xresources](https://cdn.rawgit.com/arcticicestudio/nord/develop/src/assets/nord-xresources-banner.svg)](https://github.com/arcticicestudio/nord-xresources)  
 
 #### tmux Plugin Manager
-It is recommended to install Nord tmux via [`tpm`](https://github.com/tmux-plugins/tpm).  
+
+The recommended method to install Nord tmux is via [`tpm`](https://github.com/tmux-plugins/tpm).
+
 Add Nord tmux to your `~/.tmux.conf`
+
 ```sh
 set -g @plugin 'arcticicestudio/nord-tmux'
 ```
-and press the default key binding `prefix` + <kbd>I</kbd> to fetch the plugin and source it.
+
+and press the default key binding `prefix` + <kbd>I</kbd> to fetch- and install the plugin.
 
 #### Manual
-[Download](https://github.com/arcticicestudio/nord-tmux/releases/latest) the latest version of the [`nord.conf`](https://github.com/arcticicestudio/nord-tmux/blob/develop/src/nord.conf) theme file to any directory where `~/.tmux/themes/nord-tmux/nord.conf` is the recommended path.
 
-Source the downloaded theme by adding it to your `~/.tmux.conf`
-```sh
-source-file "~/.tmux/themes/nord-tmux/nord.conf"
-```
+[Clone the repository](https://help.github.com/articles/cloning-a-repository)
 
-##### <img src="https://github.com/favicon.ico" width=16 height=16/> [GitHub Repository Clone](https://help.github.com/articles/cloning-a-repository)
-Clone the Nord tmux repository
 ```sh
 git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
 ```
-and source the downloaded theme by adding it to your `~/.tmux.conf`
+
+and source the downloaded theme by adding it to the bottom of your `~/.tmux.conf`.
+
 ```sh
-source-file "~/.tmux/themes/nord-tmux/nord.conf"
+run-shell "~/.tmux/themes/nord-tmux/nord.tmux"
 ```
 
-### Activation
-Reload your `~/.tmux.conf` file
+Reload your `~/.tmux.conf` file to source- and activate the theme.
+
 ```sh
 tmux source-file `~/.tmux.conf`
 ```
@@ -76,14 +82,43 @@ tmux source-file `~/.tmux.conf`
 
 <p align="center"><strong>Fits to many terminal applications based on Nord</strong><br><img src="https://raw.githubusercontent.com/arcticicestudio/nord-tmux/develop/src/assets/scrot-htop.png"/></p>
 
+## Configuration
+
+### Disable status content
+
+By default, this theme provides status bar content (including the powerline-styled
+background arrows).
+
+The status content can be disabled by setting the `@nord_tmux_show_status_content` to `0`:
+
+```sh
+set -g @nord_tmux_show_status_content "0"
+```
+
+#### No patched fonts
+
+The default status content makes use of patched fonts which can be disabled by setting the `@nord_tmux_no_patched_font` variable to `1`:
+
+```sh
+set -g @nord_tmux_no_patched_font "1"
+```
+
+![](https://raw.githubusercontent.com/arcticicestudio/nord-tmux/develop/src/assets/scrot-config-status-content-no-patched-font.png)
+
+## Plugin Support
+### [tmux-prefix-highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)
+Supports the *prefix*- and `copy-mode` status indicator.
+
+<p align="center"><img src="https://raw.githubusercontent.com/arcticicestudio/nord-tmux/develop/src/assets/scrot-plugin-support-tmux-prefix-highlight.png"/><br><img src="https://raw.githubusercontent.com/arcticicestudio/nord-tmux/develop/src/assets/scrot-plugin-support-tmux-prefix-highlight-copy-mode.png"/></p>
+
 ## Development
-[![](https://img.shields.io/badge/Changelog-0.1.1-81A1C1.svg)](https://github.com/arcticicestudio/nord-tmux/blob/v0.1.1/CHANGELOG.md) [![](https://img.shields.io/badge/Workflow-gitflow--branching--model-81A1C1.svg)](http://nvie.com/posts/a-successful-git-branching-model) [![](https://img.shields.io/badge/Versioning-ArcVer_0.8.0-81A1C1.svg)](https://github.com/arcticicestudio/arcver)
+[![](https://img.shields.io/badge/Changelog-0.2.0-81A1C1.svg?style=flat-square)](https://github.com/arcticicestudio/nord-tmux/blob/v0.2.0/CHANGELOG.md) [![](https://img.shields.io/badge/Workflow-gitflow--branching--model-81A1C1.svg?style=flat-square)](http://nvie.com/posts/a-successful-git-branching-model) [![](https://img.shields.io/badge/Versioning-ArcVer_0.8.0-81A1C1.svg?style=flat-square)](https://github.com/arcticicestudio/arcver)
 
 ### Contribution
 Please report issues/bugs, feature requests and suggestions for improvements to the [issue tracker](https://github.com/arcticicestudio/nord-tmux/issues).
 
 <p align="center"><img src="https://cdn.rawgit.com/arcticicestudio/nord/develop/src/assets/banner-footer-mountains.svg" /></p>
 
-<p align="center"> <img src="http://arcticicestudio.com/favicon.ico" width=16 height=16/> Copyright &copy; 2017 Arctic Ice Studio</p>
+<p align="center">Copyright &copy; 2017-present Arctic Ice Studio</p>
 
-<p align="center"><a href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-5E81AC.svg"/></a> <a href="https://creativecommons.org/licenses/by-sa/4.0"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-5E81AC.svg"/></a></p>
+<p align="center"><a href="https://github.com/arcticicestudio/nord-tmux/blob/develop/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-5E81AC.svg?style=flat-square"/></a> <a href="https://creativecommons.org/licenses/by-sa/4.0"><img src="https://img.shields.io/badge/License-CC_BY--SA_4.0-5E81AC.svg?style=flat-square"/></a></p>
